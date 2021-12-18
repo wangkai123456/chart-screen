@@ -9,9 +9,9 @@ export default (appInfo: EggAppInfo) => {
     type: 'mysql',
     host: process.env.MYSQL_HOST || '127.0.0.1',
     port: parseInt(process.env.MYSQL_PORT || '3306'),
-    username: process.env.U || 'yn_test_2',
-    password: process.env.P || 'yntest2',
-    database: process.env.DATABASE || 'yn_test_2',
+    username: process.env.U || 'yn',
+    password: process.env.P || '123456',
+    database: process.env.DATABASE || 'test_yn',
     // 自动建表 注意：线上部署的时候不要使用，有可能导致数据丢失
     synchronize: true,
     // 打印日志

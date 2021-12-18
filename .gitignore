@@ -18,3 +18,4 @@ typings/
 .cache
 .serverless/
 .vscode/launch.json
+script/publish
