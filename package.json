@@ -52,13 +52,13 @@
     "stop": "egg-scripts stop --title=cool-admin-midway",
     "start_build": "npm run build && cross-env NODE_ENV=development midway-bin dev",
     "docker": "egg-scripts start --title=cool-admin-midway --framework=@midwayjs/web  --sticky",
-    "dev": "cross-env ets && cross-env NODE_ENV=local TS_NODE_TYPE_CHECK=false TS_NODE_TRANSPILE_ONLY=true midway-bin dev --ts --port=8001 --sticky",
+    "dev": "cross-env NODE_ENV=local TS_NODE_TYPE_CHECK=false TS_NODE_TRANSPILE_ONLY=true midway-bin dev --ts --port=8001 --sticky",
     "test": "midway-bin test",
     "cov": "midway-bin cov",
     "lint": "mwts check",
     "lint:fix": "mwts fix",
     "ci": "npm run cov",
-    "build": "midway-bin build -c",
+    "build": "cross-env USER_NAME=wangkai SQL_PASSWORD=yntest DATABASE=yn_test midway-bin build -c",
     "check": "luckyeye"
   },
   "midway-bin-clean": [

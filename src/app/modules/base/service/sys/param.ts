@@ -3,6 +3,7 @@ import { BaseService, ICoolCache } from '@cool-midway/core';
 import { InjectEntityModel } from '@midwayjs/orm';
 import { Repository } from 'typeorm';
 import { BaseSysParamEntity } from '../../entity/sys/param';
+import { BaseSysAddressAreaEntity } from '../../entity/sys/address_area';
 
 /**
  * 参数配置
@@ -11,6 +12,9 @@ import { BaseSysParamEntity } from '../../entity/sys/param';
 export class BaseSysParamService extends BaseService {
   @InjectEntityModel(BaseSysParamEntity)
   baseSysParamEntity: Repository<BaseSysParamEntity>;
+
+  @InjectEntityModel(BaseSysAddressAreaEntity)
+  baseSysAddressAreaEntity: Repository<BaseSysAddressAreaEntity>;
 
   @Inject('cool:cache')
   coolCache: ICoolCache;
@@ -56,5 +60,12 @@ export class BaseSysParamService extends BaseService {
     for (const param of params) {
       await this.coolCache.set(`param:${param.keyName}`, JSON.stringify(param));
     }
+  }
+
+  /**
+   * 所属辖区
+   */
+  async getAreas() {
+    return await this.baseSysAddressAreaEntity.find();
   }
 }

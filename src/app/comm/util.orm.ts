@@ -29,12 +29,21 @@ export const pagination =
   };
 
 export const orderBy =
-  (sort: string, order?: 'ASC' | 'DESC') =>
+  (order: string, sort?: 'ASC' | 'DESC') =>
   <T>(queryBuilder: SelectQueryBuilder<T>) => {
     if (!order) {
       return queryBuilder;
     }
-    return queryBuilder.orderBy(sort, order);
+    return queryBuilder.orderBy(order, sort);
+  };
+
+export const leftJoinAndSelect =
+  (subQueryFactory: string, alias: string, condition?: string) =>
+  <T>(queryBuilder: SelectQueryBuilder<T>) => {
+    if (condition) {
+      return queryBuilder.leftJoinAndSelect(subQueryFactory, alias, condition);
+    }
+    return queryBuilder.leftJoinAndSelect(subQueryFactory, alias);
   };
 
 export const getManyAndCount = <T>(queryBuilder: SelectQueryBuilder<T>) =>

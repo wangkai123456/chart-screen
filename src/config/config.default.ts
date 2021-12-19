@@ -13,14 +13,14 @@ export default (appInfo: EggAppInfo) => {
   config.middleware = [];
 
   // 模板渲染 用法 https://nunjucks.bootcss.com
-  config.view = {
-    root: [path.join(appInfo.baseDir, 'app/view')].join(','),
-    defaultViewEngine: 'nunjucks',
-    defaultExtension: '.html',
-    mapping: {
-      '.html': 'nunjucks',
-    },
-  };
+  // config.view = {
+  //   root: [path.join(appInfo.baseDir, 'app/view')].join(','),
+  //   defaultViewEngine: 'nunjucks',
+  //   defaultExtension: '.html',
+  //   mapping: {
+  //     '.html': 'nunjucks',
+  //   },
+  // };
 
   // 靜態目錄及緩存設置
   config.static = {

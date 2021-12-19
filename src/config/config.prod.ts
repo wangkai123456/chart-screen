@@ -4,16 +4,15 @@ export type DefaultConfig = PowerPartial<EggAppConfig>;
 
 export default (appInfo: EggAppInfo) => {
   const config = {} as DefaultConfig;
-
   config.orm = {
     type: 'mysql',
-    host: process.env.MYSQL_HOST || '127.0.0.1',
+    host: process.env.MYSQL_HOST || '175.24.206.201',
     port: parseInt(process.env.MYSQL_PORT || '3306'),
-    username: process.env.U || 'yn',
-    password: process.env.P || '123456',
-    database: process.env.DATABASE || 'test_yn',
+    username: process.env.USER_NAME || 'wangkai',
+    password: process.env.SQL_PASSWORD || 'yntest',
+    database: process.env.DATABASE || 'yn_test',
     // 自动建表 注意：线上部署的时候不要使用，有可能导致数据丢失
-    synchronize: true,
+    synchronize: false,
     // 打印日志
     logging: false,
     // 字符集

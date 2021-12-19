@@ -14,7 +14,7 @@ export class BaseSysUserEntity extends BaseEntity {
   @Column({ comment: '手机号', length: 11 })
   username: string;
 
-  @Column({ comment: '密码' })
+  @Column({ comment: '密码', select: false })
   password: string;
 
   @Column({
@@ -29,6 +29,6 @@ export class BaseSysUserEntity extends BaseEntity {
   @Column({ comment: '状态 0:禁用 1：启用', default: 1, type: 'tinyint' })
   status: number;
 
-  // 角色ID列表
-  roleIdList: number[];
+  @Column({ comment: '删除', default: false })
+  delFlag: boolean;
 }

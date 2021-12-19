@@ -1,7 +1,7 @@
 import { Inject, Provide } from '@midwayjs/decorator';
 import { BaseService, ICoolCache, CoolCommException } from '@cool-midway/core';
 import { InjectEntityModel } from '@midwayjs/orm';
-import { Repository } from 'typeorm';
+import { Repository, In } from 'typeorm';
 import { BaseSysUserEntity } from '../../entity/sys/user';
 import { BaseSysPermsService } from './perms';
 import * as _ from 'lodash';
@@ -13,7 +13,7 @@ import {
   where,
   pagination,
   orderBy,
-  getManyAndCount
+  getManyAndCount,
 } from './../../../../comm/util.orm';
 import { composePipe } from './../../../../comm/util.operation';
 /**
@@ -41,6 +41,7 @@ export class BaseSysUserService extends BaseService {
       where('user.userName != :userName', {
         userName: 'admin',
       }),
+      where('user.delFlag is :delFlag', { delFlag: false }),
       where('user.name LIKE :keyWord', {
         keyWord: query.keyWord ? `%${query.keyWord}%` : null,
       }),
@@ -167,5 +168,14 @@ export class BaseSysUserService extends BaseService {
    */
   async forbidden(userId) {
     await this.coolCache.del(`admin:token:${userId}`);
+  }
+
+  async delete(ids) {
+    await this.baseSysUserEntity
+      .createQueryBuilder()
+      .update()
+      .set({ delFlag: true })
+      .where({ id: In(ids) })
+      .execute();
   }
 }

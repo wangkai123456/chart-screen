@@ -58,6 +58,15 @@ export class BaseOpenController extends BaseController {
   }
 
   /**
+   * 获取所属辖区
+   * @param login
+   */
+  @Post('/areas', { summary: '获取所属辖区' })
+  async areas() {
+    return this.ok(await this.baseSysParamService.getAreas());
+  }
+
+  /**
    * 获得验证码
    */
   @Get('/captcha', { summary: '验证码' })
